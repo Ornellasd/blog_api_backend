@@ -1,3 +1,4 @@
+import { v4 as uuidv4 } from 'uuid';
 import User from '../models/user';
 
 exports.index = (req, res) => {
@@ -5,7 +6,7 @@ exports.index = (req, res) => {
     if(err) {
       return err;
     } else {
-      console.log(users);
+      return res.send(users);
     }
   });
 }
