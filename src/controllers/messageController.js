@@ -1,5 +1,5 @@
 import { v4 as uuidv4 } from 'uuid';
-import Messages from '../models/message';
+import Message from '../models/message';
 
 let messages = {
   1: {
@@ -33,12 +33,14 @@ exports.messages_get = (req, res) => {
 
 exports.messages_post = (req, res) => {
   const id = uuidv4();
-  const message = {
+  const message = new Message({
     id,
     text: req.body.text,
-  };
+  });
  
   messages[id] = message;
+
+  message.save();
  
   return res.send(message);
 }
